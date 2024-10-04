@@ -20,9 +20,8 @@ public class Seed
                     new Club()
                     {
                         Title = "Geocaching Club 1",
-                        Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                        Description = "This is the description of the first cinema",
-
+                        Image = "https://imgs.search.brave.com/gZOwT6aSBjkpLKuGG44co9AO5cB_z7tY3DnNtGKWgYg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDY3/MjI3MzgzL3Bob3Rv/L2dlb2NhY2hpbmcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PWZkMUNuMkhNSTBk/Y3kzb2VMNnh6VEVO/MDNJRS1MUTg3dk1w/Ty1fZmtDaTQ9",
+                        Description = "This is club description",
                         Address = new Address()
                         {
                             Street = "Alexander Platze 1",
@@ -33,8 +32,8 @@ public class Seed
                     new Club()
                     {
                         Title = "Geocaching Club 2",
-                        Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                        Description = "This is the description of the first cinema",
+                        Image = "https://imgs.search.brave.com/gZOwT6aSBjkpLKuGG44co9AO5cB_z7tY3DnNtGKWgYg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDY3/MjI3MzgzL3Bob3Rv/L2dlb2NhY2hpbmcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PWZkMUNuMkhNSTBk/Y3kzb2VMNnh6VEVO/MDNJRS1MUTg3dk1w/Ty1fZmtDaTQ9",
+                        Description = "This is club description",
                         Address = new Address()
                         {
                             Street = "Alexander Platze 1",
@@ -45,8 +44,8 @@ public class Seed
                     new Club()
                     {
                         Title = "Geocaching Club 3",
-                        Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                        Description = "This is the description of the first club",
+                        Image = "https://imgs.search.brave.com/gZOwT6aSBjkpLKuGG44co9AO5cB_z7tY3DnNtGKWgYg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDY3/MjI3MzgzL3Bob3Rv/L2dlb2NhY2hpbmcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PWZkMUNuMkhNSTBk/Y3kzb2VMNnh6VEVO/MDNJRS1MUTg3dk1w/Ty1fZmtDaTQ9",
+                        Description = "This is club description",
                         Address = new Address()
                         {
                             Street = "Alexander Platze 1",
@@ -65,8 +64,8 @@ public class Seed
                     new Cache()
                     {
                         Title = "Geocaching Cache 1",
-                        Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                        Description = "This is the description of the first race",
+                        Image = "https://imgs.search.brave.com/gZOwT6aSBjkpLKuGG44co9AO5cB_z7tY3DnNtGKWgYg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDY3/MjI3MzgzL3Bob3Rv/L2dlb2NhY2hpbmcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PWZkMUNuMkhNSTBk/Y3kzb2VMNnh6VEVO/MDNJRS1MUTg3dk1w/Ty1fZmtDaTQ9",
+                        Description = "This is cache description",
                         CacheType= CacheType.MultiCache,
                         Address = new Address()
                         {
@@ -78,8 +77,8 @@ public class Seed
                     new Cache()
                     {
                         Title = "Geocaching Cache 2",
-                        Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                        Description = "This is the description of the first race",
+                        Image = "https://imgs.search.brave.com/gZOwT6aSBjkpLKuGG44co9AO5cB_z7tY3DnNtGKWgYg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDY3/MjI3MzgzL3Bob3Rv/L2dlb2NhY2hpbmcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PWZkMUNuMkhNSTBk/Y3kzb2VMNnh6VEVO/MDNJRS1MUTg3dk1w/Ty1fZmtDaTQ9",
+                        Description = "This is cache description",
                         CacheType = CacheType.Earth,
                         AddressId = 5,
                         Address = new Address()
