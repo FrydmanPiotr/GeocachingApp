@@ -11,6 +11,6 @@ namespace GeocachingApp.Models
         public int? CachesCreated { get; set; }
         public Address? Address { get; set; }
         public ICollection<Club> Clubs { get; set; }
-        public ICollection<Cache> Races { get; set; }
+        public ICollection<Cache> Caches { get; set; }
     }
 }
