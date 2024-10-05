@@ -1,4 +1,5 @@
 ﻿using GeocachingApp.Data;
+using GeocachingApp.Interfaces;
 using GeocachingApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,22 +8,22 @@ namespace GeocachingApp.Controllers
 {
     public class CacheController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICacheRepository _cacheRepository;
 
-        public CacheController(ApplicationDbContext context)
+        public CacheController(ICacheRepository cacheRepository)
         {
-            _context = context;
+            _cacheRepository = cacheRepository;
         }
         
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Cache> caches = _context.Caches.ToList();
+            IEnumerable<Cache> caches = await _cacheRepository.GetAll();
             return View(caches);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            Cache cache = _context.Caches.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
+            Cache cache = await _cacheRepository.GetByIdAsync(id);
             return View(cache);
         }
     }
