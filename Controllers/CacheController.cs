@@ -1,6 +1,7 @@
 ﻿using GeocachingApp.Data;
 using GeocachingApp.Interfaces;
 using GeocachingApp.Models;
+using GeocachingApp.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,22 @@ namespace GeocachingApp.Controllers
         {
             Cache cache = await _cacheRepository.GetByIdAsync(id);
             return View(cache);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Cache cache)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(cache);
+            }
+            _cacheRepository.Add(cache);
+            return RedirectToAction("Index");
         }
     }
 }
