@@ -1,6 +1,7 @@
 ﻿using GeocachingApp.Data;
 using GeocachingApp.Interfaces;
 using GeocachingApp.Models;
+using GeocachingApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,12 @@ namespace GeocachingApp.Controllers
     public class ClubController : Controller
     {
         private readonly IClubRepository _clubRepository;
+        private readonly IPhotoService _photoService;
 
-        public ClubController(ApplicationDbContext context, IClubRepository clubRepository)
+        public ClubController(IClubRepository clubRepository, IPhotoService photoService)
         {
             _clubRepository = clubRepository;
+            _photoService = photoService;
         }
         public async Task<IActionResult> Index()
         {
@@ -32,14 +35,33 @@ namespace GeocachingApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Club club)
+        public async Task<IActionResult> Create(CreateClubViewModel clubVM)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(club);
+                var result = await _photoService.AddPhotoAsync(clubVM.Image);
+
+                var club = new Club
+                {
+                    Title = clubVM.Title,
+                    Description = clubVM.Description,
+                    Image = result.Url.ToString(),
+                    Address = new Address 
+                    { 
+                        Street=clubVM.Address.Street,
+                        City=clubVM.Address.City,
+                        Country = clubVM.Address.Country
+                    }
+                };
+                _clubRepository.Add(club);
+                return RedirectToAction("Index");
             }
-            _clubRepository.Add(club);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Photo upload failed");
+            }
+
+            return View(clubVM);
         }
     }
 }
