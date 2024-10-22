@@ -1,13 +1,8 @@
-﻿@using GeocachingApp.Data.Enum
-@using GeocachingApp.ViewModels
-@model CreateCacheViewModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using GeocachingApp.ViewModels
+@model EditClubViewModel
 
-<form method="post" asp-action="Create" enctype="multipart/form-data">
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" value="AddressId" id="AddressId"/>
     <div class="form-group">
         <label asp-for="Title">Title</label>
         <input asp-for="Title" class="form-control" placeholder="Title">
@@ -33,17 +28,10 @@
         <input asp-for="Address.Country" class="form-control" placeholder="Country">
         <span asp-validation-for="Address.Country" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="CacheType">Cache type</label>
-        <select asp-for="CacheType" asp-items="@Html.GetEnumSelectList<CacheType>()" class="form-control">
-            <option>--Select--</option>
-        </select>
-        <span asp-validation-for="CacheType" class="text-danger"></span>
-    </div>
-    <div class="form-group">
+     <div class="form-group">
         <label asp-for="Image">Image</label>
         <input asp-for="Image" type="file" class="form-control" placeholder="Image">
-        <span asp-validation-for="Image" class="text-danger"></span>
+        <span asp-validation-for="Image" type="file" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

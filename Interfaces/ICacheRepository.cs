@@ -6,6 +6,7 @@ namespace GeocachingApp.Interfaces
     {
         Task<IEnumerable<Cache>> GetAll();
         Task<Cache> GetByIdAsync(int id);
+        Task<Cache> GetByIdAsyncNoTracking(int id);
         Task<IEnumerable<Cache>> GetAllCachesByCity(string city);
         bool Add(Cache cache);
         bool Update(Cache cache);

@@ -38,7 +38,12 @@ namespace GeocachingApp.Repository
 
         public async Task<Cache> GetByIdAsync(int id)
         {
-            return await _context.Caches.Include(i=>i.Address).FirstOrDefaultAsync();
+            return await _context.Caches.Include(i=>i.Address).FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        public async Task<Cache> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Caches.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()
