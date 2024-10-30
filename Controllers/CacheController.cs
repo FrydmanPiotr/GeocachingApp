@@ -123,5 +123,22 @@ namespace GeocachingApp.Controllers
                 return View(cacheVM);
             }
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cacheDetails = await _cacheRepository.GetByIdAsync(id);
+            if (cacheDetails == null) return View("Error");
+            return View(cacheDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteClub(int id)
+        {
+            var cacheDetails = await _cacheRepository.GetByIdAsync(id);
+            if (cacheDetails == null) return View("Error");
+
+            _cacheRepository.Delete(cacheDetails);
+            return RedirectToAction("Index");
+        }
     }
 }
