@@ -41,7 +41,7 @@ namespace GeocachingApp.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false,false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Race");
+                        return RedirectToAction("Index", "Cache");
                     }
                 }
                 TempData["Error"] = "Wrong credentials. Please, try again";
@@ -49,6 +49,12 @@ namespace GeocachingApp.Controllers
             }
             TempData["Error"] = "Wrong credentials. Please, try again";
             return View(loginViewModel);
+        }
+
+        public IActionResult Register()
+        {
+            var response = new RegisterViewModel();
+            return View(response);
         }
     }
 }
