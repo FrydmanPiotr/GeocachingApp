@@ -8,7 +8,6 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
-        <a class="btn btn-primary" asp-area="" asp-controller="Cache" asp-action="Create">Create</a>
         <div class="row">
             @foreach (var item in Model)
             {
@@ -22,11 +21,14 @@
                                 <div class="btn-group">
                                     <a type="btn btn-success" asp-controller="Cache" asp-action="Detail" asp-route-id="@item.Id" type="button"
                                        class="btn btn-sm btn-outline-secondary">View</a>
-                                    <a type="btn btn-success" asp-controller="Cache" asp-action="Edit" asp-route-id="@item.Id" type="button"
-                                       class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    <a asp-controller="Cache" asp-action="Delete" asp-route-id="@item.Id"
-                                       class="btn btn-sm btn-outline-secondary">Delete</a>
-                                  </div>
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                    {
+                                        <a type="btn btn-success" asp-controller="Cache" asp-action="Edit" asp-route-id="@item.Id" type="button"
+                                        class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a asp-controller="Cache" asp-action="Delete" asp-route-id="@item.Id"
+                                        class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
