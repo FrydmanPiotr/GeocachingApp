@@ -1,0 +1,26 @@
+﻿@using GeocachingApp.ViewModels
+@model UserDetailViewModel
+
+<div class="container">
+    <h1 class="my-4">Page Heading
+        <small>Secondary Text</small>
+    </h1>
+    <div class="row">
+        <div class="col-md-8">
+          @*<img class="img-fluid" src="@Model.Image" alt="">*@
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="my-3">@Model.CachesFound</h3>
+            <p>@Model.CachesCreated</p>
+            <h3 class="my-3">Location</h3>
+            <ul>
+@*                <li>@Model.Address.City</li>
+                  <li>@Model.Address.City</li>
+ @*               <li>@Model.Address.Country</li>*@
+            </ul>
+        </div>
+    </div>
+</div>
+
+

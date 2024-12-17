@@ -2,13 +2,13 @@
 
 namespace GeocachingApp.Interfaces
 {
-    public interface IDashboardRepository
+    public interface IUserRepository
     {
-        Task<List<Club>> GetAllUserClubs();
-        Task<List<Cache>> GetAllUserCaches();
+        Task<IEnumerable<AppUser>> GetAllUsers();
         Task<AppUser> GetUserById(string id);
-        Task<AppUser> GetByIdNoTracking(string id);
+        bool Add(AppUser user);
         bool Update(AppUser user);
+        bool Delete(AppUser user);
         bool Save();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GeocachingApp.Data;
 using GeocachingApp.Interfaces;
 using GeocachingApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeocachingApp.Repository
 {
@@ -26,6 +27,28 @@ namespace GeocachingApp.Repository
             var curUser = _httpContextAccessor.HttpContext?.User;
             var userCaches = _context.Caches.Where(r => r.AppUser.Id == curUser.ToString());
             return userCaches.ToList();
+        }
+
+        public async Task<AppUser> GetUserById(string id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+
+        public async Task<AppUser> GetByIdNoTracking(string id)
+        {
+            return await _context.Users.Where(u => u.Id == id).AsNoTracking().FirstOrDefaultAsync();
+        }
+
+        public bool Update(AppUser user)
+        {
+            _context.Users.Update(user);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true: false;
         }
     }
 }

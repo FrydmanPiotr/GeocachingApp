@@ -1,0 +1,34 @@
+﻿@using GeocachingApp.Data.Enum
+@using GeocachingApp.ViewModels
+@model EditUserProfileViewModel
+
+<form method="post" asp-action="EditUserProfile" enctype="multipart/form-data">
+    <input type="hidden" value="Id" id="Id" />
+    <div class="form-group">
+        <label asp-for="CachesCreated">Caches created</label>
+        <input asp-for="CachesCreated" class="form-control" placeholder="Caches created">
+        <span asp-validation-for="CachesCreated" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CachesFound">Caches found</label>
+        <input asp-for="CachesFound" class="form-control" placeholder="Caches found">
+        <span asp-validation-for="CachesFound" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="City">City</label>
+        <input asp-for="City" class="form-control" placeholder="City">
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Country">Country</label>
+        <input asp-for="Country" class="form-control" placeholder="Country">
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+   
+    <div class="form-group">
+        <label asp-for="Image">Profile image</label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+        <span asp-validation-for="Image" type="file" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
