@@ -17,15 +17,15 @@ namespace GeocachingApp.Repository
         }
         public async Task<List<Club>> GetAllUserClubs()
         {
-            var curUser = _httpContextAccessor.HttpContext?.User;
-            var userClubs = _context.Clubs.Where(r => r.AppUser.Id.ToString() == curUser.ToString());
+            var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var userClubs = _context.Clubs.Where(r => r.AppUser.Id.ToString() == curUser);
             return userClubs.ToList();
         }
 
         public async Task<List<Cache>> GetAllUserCaches()
         {
-            var curUser = _httpContextAccessor.HttpContext?.User;
-            var userCaches = _context.Caches.Where(r => r.AppUser.Id == curUser.ToString());
+            var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var userCaches = _context.Caches.Where(r => r.AppUser.Id == curUser);
             return userCaches.ToList();
         }
 
@@ -48,7 +48,7 @@ namespace GeocachingApp.Repository
         public bool Save()
         {
             var saved = _context.SaveChanges();
-            return saved > 0 ? true: false;
+            return saved > 0 ? true : false;
         }
     }
 }

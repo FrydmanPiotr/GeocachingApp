@@ -3,7 +3,6 @@ using GeocachingApp.Interfaces;
 using GeocachingApp.Models;
 using GeocachingApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace GeocachingApp.Controllers
 {
@@ -23,7 +22,7 @@ namespace GeocachingApp.Controllers
 
         private void MapUserEdit(AppUser user, EditUserProfileViewModel editVM, ImageUploadResult photoResult)
         {
-            user.Id= editVM.Id;
+            user.Id = editVM.Id;
             user.CachesFound = editVM.CachesFound;
             user.CachesCreated = editVM.CachesCreated;
             user.ProfileImageUrl = photoResult.Url.ToString();
@@ -45,10 +44,10 @@ namespace GeocachingApp.Controllers
 
         public async Task<IActionResult> EditUserProfile()
         {
-            var curUserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
             var user = await _dashboardRepository.GetUserById(curUserId);
             if (user == null) return View("Error");
-            var editUserProfileViewModel = new EditUserProfileViewModel()
+            var editUserViewModel = new EditUserProfileViewModel()
             {
                 Id = curUserId,
                 CachesFound = user.CachesFound,
@@ -57,7 +56,7 @@ namespace GeocachingApp.Controllers
                 City = user.City,
                 Country = user.Country
             };
-            return View(editUserProfileViewModel);
+            return View(editUserViewModel);
         }
         [HttpPost]
         public async Task<IActionResult> EditUserProfile(EditUserProfileViewModel editVM)

@@ -1,4 +1,5 @@
 ﻿using GeocachingApp.Models;
+using System.Globalization;
 
 namespace GeocachingApp.ViewModels
 {
@@ -9,5 +10,6 @@ namespace GeocachingApp.ViewModels
         public string Description { get; set; }
         public Address Address { get; set; }
         public IFormFile Image { get; set; }
+        public string AppUserId { get; set; }
     }
 }

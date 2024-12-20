@@ -11,5 +11,6 @@ namespace GeocachingApp.ViewModels
         public Address Address { get; set; }
         public IFormFile Image { get; set; }
         public CacheType CacheType { get; set; }
+        public string AppUserId { get; set; }
     }
 }

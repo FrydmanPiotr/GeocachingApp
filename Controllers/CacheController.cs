@@ -9,11 +9,14 @@ namespace GeocachingApp.Controllers
     {
         private readonly ICacheRepository _cacheRepository;
         private readonly IPhotoService _photoService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CacheController(ICacheRepository cacheRepository, IPhotoService photoService)
+        public CacheController(ICacheRepository cacheRepository, 
+            IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
         {
             _cacheRepository = cacheRepository;
             _photoService = photoService;
+            _httpContextAccessor = httpContextAccessor;
         }
         
         public async Task<IActionResult> Index()
@@ -30,7 +33,9 @@ namespace GeocachingApp.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var curUserId = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var createCacheViewModel = new CreateCacheViewModel { AppUserId=curUserId };
+            return View(createCacheViewModel);
         }
 
         [HttpPost]
@@ -45,6 +50,7 @@ namespace GeocachingApp.Controllers
                     Title = cacheVM.Title,
                     Description = cacheVM.Description,
                     Image = result.Url.ToString(),
+                    AppUserId = cacheVM.AppUserId,
                     Address = new Address
                     {
                         Street = cacheVM.Address.Street,
