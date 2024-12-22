@@ -64,7 +64,7 @@ namespace GeocachingApp.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Failed to edit profile");
-                return View("EditUserProfile",editVM);
+                return View("EditUserProfile", editVM);
             }
 
             AppUser user = await _dashboardRepository.GetByIdNoTracking(editVM.Id);
@@ -86,7 +86,7 @@ namespace GeocachingApp.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Could not delete photo");
+                    ModelState.AddModelError("", "Could not delete photo" + ex.Message);
                     return View(editVM);
                 }
                 var photoResult = await _photoService.AddPhotoAsync(editVM.Image);
