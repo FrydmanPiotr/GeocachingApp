@@ -18,7 +18,7 @@ namespace GeocachingApp.Repository
         public async Task<List<Club>> GetAllUserClubs()
         {
             var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
-            var userClubs = _context.Clubs.Where(r => r.AppUser.Id.ToString() == curUser);
+            var userClubs = _context.Clubs.Where(r => r.AppUser.Id == curUser);
             return userClubs.ToList();
         }
 
