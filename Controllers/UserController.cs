@@ -41,6 +41,8 @@ namespace GeocachingApp.Controllers
                 UserName = user.UserName,
                 CachesFound = user.CachesFound,
                 CachesCreated=user.CachesCreated,
+                City =user.City,
+                Country=user.Country,
             };
             return View(userDetailViewModel);
         }
