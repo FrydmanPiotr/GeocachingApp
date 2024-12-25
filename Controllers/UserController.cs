@@ -46,5 +46,28 @@ namespace GeocachingApp.Controllers
             };
             return View(userDetailViewModel);
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            
+            var userDetails = await _userRepository.GetUserById(id);
+            if (userDetails == null) return View("Error");
+            if (User.Identity.Name == userDetails.UserName && User.IsInRole("admin"))
+            {
+                ModelState.AddModelError("", "Administrator nie może usunąć własnego konta.");
+                return RedirectToAction("Index");
+            }
+            return View(userDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var userDetails = await _userRepository.GetUserById(id);
+            if (userDetails == null) return View("Error");
+            
+            _userRepository.Delete(userDetails);
+            return RedirectToAction("Index");
+        }
     }
 }

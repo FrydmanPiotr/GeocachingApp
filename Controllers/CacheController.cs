@@ -138,7 +138,7 @@ namespace GeocachingApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteClub(int id)
+        public async Task<IActionResult> DeleteCache(int id)
         {
             var cacheDetails = await _cacheRepository.GetByIdAsync(id);
             if (cacheDetails == null) return View("Error");

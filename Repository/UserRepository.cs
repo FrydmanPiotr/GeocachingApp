@@ -1,4 +1,5 @@
-﻿using GeocachingApp.Data;
+﻿using CloudinaryDotNet.Actions;
+using GeocachingApp.Data;
 using GeocachingApp.Interfaces;
 using GeocachingApp.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +15,14 @@ namespace GeocachingApp.Repository
         }
         public bool Add(AppUser user)
         {
-            throw new NotImplementedException();
+            _context.Add(user);
+            return Save();
         }
 
         public bool Delete(AppUser user)
         {
-            throw new NotImplementedException();
+            _context.Remove(user);
+            return Save();
         }
 
         public async Task<IEnumerable<AppUser>> GetAllUsers()
@@ -42,6 +45,11 @@ namespace GeocachingApp.Repository
         {
             _context.Update(user);
             return Save();
+        }
+
+        public async Task<AppUser> GetByIdNoTracking(string id)
+        {
+            return await _context.Users.Where(u => u.Id == id).AsNoTracking().FirstOrDefaultAsync();
         }
     }
 }
