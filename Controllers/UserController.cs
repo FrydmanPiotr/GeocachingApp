@@ -1,7 +1,6 @@
-﻿using GeocachingApp.Interfaces;
+﻿using CloudinaryDotNet.Actions;
+using GeocachingApp.Interfaces;
 using GeocachingApp.Models;
-using GeocachingApp.Repository;
-using GeocachingApp.Services;
 using GeocachingApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,12 +9,27 @@ namespace GeocachingApp.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IPhotoService _photoService;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository,
+             IHttpContextAccessor httpContextAccessor, IPhotoService photoService)
         {
             _userRepository = userRepository;
+            _httpContextAccessor = httpContextAccessor;
+            _photoService = photoService;
         }
+
+        private void MapUserEdit(AppUser user, EditUserProfileViewModel userVM, ImageUploadResult photoResult)
+        {
+            user.Id = userVM.Id;
+            user.CachesFound = userVM.CachesFound;
+            user.CachesCreated = userVM.CachesCreated;
+            user.ProfileImageUrl = photoResult.Url.ToString();
+            user.City = userVM.City;
+            user.Country = userVM.Country;
+        }
+
         [HttpGet("users")]
         public async Task<IActionResult> Index()
         {
@@ -51,58 +65,62 @@ namespace GeocachingApp.Controllers
             return View(userDetailViewModel);
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> EditUser(string id)
         {
             var user = await _userRepository.GetUserById(id);
             if (user == null) return View("Error");
-            var userVM = new EditUserProfileViewModel
-            {
+            var editUserViewModel = new EditUserProfileViewModel()
+            {   
+                Id = user.Id,
                 CachesFound = user.CachesFound,
                 CachesCreated = user.CachesCreated,
                 ProfileImageUrl = user.ProfileImageUrl,
                 City = user.City,
-                Country = user.Country,
-    };
-            return View(userVM);
-
+                Country = user.Country
+            };
+            return View(editUserViewModel);
         }
-
         [HttpPost]
-        public async Task<IActionResult> Edit(string id, EditUserProfileViewModel userVM)
+        public async Task<IActionResult> EditUser(string id, EditUserProfileViewModel userVM)
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Failed to edit user");
-                return View("Edit", userVM);
+                ModelState.AddModelError("", "Failed to edit profile");
+                return View("EditUserProfile", userVM);
             }
 
-            var userDetails = await _userRepository.GetByIdAsyncNoTracking(id);
+            AppUser user = await _userRepository.GetByIdNoTracking(id);
 
-            if (userDetails != null)
+            if (user.ProfileImageUrl == "" || user.ProfileImageUrl == null)
             {
-                var user = new AppUser
-                {
-                    Id = id,
-                    CachesFound = userVM.CachesFound,
-                    CachesCreated = userVM.CachesCreated,
-                    ProfileImageUrl = userVM.ProfileImageUrl,
-                    City = userVM.City,
-                    Country = userVM.Country,
-                };
+                var photoResult = await _photoService.AddPhotoAsync(userVM.Image);
+
+                MapUserEdit(user, userVM, photoResult);
 
                 _userRepository.Update(user);
-
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(userVM);
+                try
+                {
+                    await _photoService.DeletePhotoAsync(user.ProfileImageUrl);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Could not delete photo" + ex.Message);
+                    return View(userVM);
+                }
+                var photoResult = await _photoService.AddPhotoAsync(userVM.Image);
+                MapUserEdit(user, userVM, photoResult);
+                _userRepository.Update(user);
+                return RedirectToAction("Index");
             }
         }
 
         public async Task<IActionResult> Delete(string id)
         {
-            
+
             var userDetails = await _userRepository.GetUserById(id);
             if (userDetails == null) return View("Error");
             if (User.Identity.Name == userDetails.UserName && User.IsInRole("admin"))
@@ -112,6 +130,7 @@ namespace GeocachingApp.Controllers
             }
             return View(userDetails);
         }
+        
 
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteUser(string id)
