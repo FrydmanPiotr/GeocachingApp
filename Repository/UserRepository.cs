@@ -51,5 +51,10 @@ namespace GeocachingApp.Repository
         {
             return await _context.Users.Where(u => u.Id == id).AsNoTracking().FirstOrDefaultAsync();
         }
+
+        public async Task<AppUser> GetByIdAsyncNoTracking(string id)
+        {
+            return await _context.Users.Where(u => u.Id == id).AsNoTracking().FirstOrDefaultAsync();
+        }
     }
 }

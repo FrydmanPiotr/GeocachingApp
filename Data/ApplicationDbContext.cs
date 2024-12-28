@@ -12,6 +12,6 @@ namespace GeocachingApp.Data
         }
         public DbSet<Cache> Caches { get; set; }
         public DbSet<Club> Clubs { get; set; }
-        public DbSet<Address> Address { get; set; }
+        public DbSet<Address> Addresses { get; set; }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using GeocachingApp.Interfaces;
+using GeocachingApp.Models;
+using GeocachingApp.Repository;
+using GeocachingApp.Services;
 using GeocachingApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +10,7 @@ namespace GeocachingApp.Controllers
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
+        private readonly IPhotoService _photoService;
 
         public UserController(IUserRepository userRepository)
         {
@@ -45,6 +49,55 @@ namespace GeocachingApp.Controllers
                 Country=user.Country,
             };
             return View(userDetailViewModel);
+        }
+
+        public async Task<IActionResult> Edit(string id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            if (user == null) return View("Error");
+            var userVM = new EditUserProfileViewModel
+            {
+                CachesFound = user.CachesFound,
+                CachesCreated = user.CachesCreated,
+                ProfileImageUrl = user.ProfileImageUrl,
+                City = user.City,
+                Country = user.Country,
+    };
+            return View(userVM);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string id, EditUserProfileViewModel userVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit user");
+                return View("Edit", userVM);
+            }
+
+            var userDetails = await _userRepository.GetByIdAsyncNoTracking(id);
+
+            if (userDetails != null)
+            {
+                var user = new AppUser
+                {
+                    Id = id,
+                    CachesFound = userVM.CachesFound,
+                    CachesCreated = userVM.CachesCreated,
+                    ProfileImageUrl = userVM.ProfileImageUrl,
+                    City = userVM.City,
+                    Country = userVM.Country,
+                };
+
+                _userRepository.Update(user);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(userVM);
+            }
         }
 
         public async Task<IActionResult> Delete(string id)
