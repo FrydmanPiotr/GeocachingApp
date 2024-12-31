@@ -1,17 +1,19 @@
 ﻿@using GeocachingApp.ViewModels
 @model UserDetailViewModel
+@{
+    ViewData["Title"] = Model.UserName;
+}
 
-<div class="container">
-    <h3 class="my-4">@Model.UserName</h3>
-    
-        <div class="col-md-4">
-            <ul>
-                <li>Caches found: @Model.CachesFound</li>
-                <li>Caches created: @Model.CachesCreated</li>            
-                <li>City: @Model.City</li>            
-                <li>Country: @Model.Country</li>            
-            </ul>
-        </div>
+<div class="container">    
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item bg-primary text-white">@Model.UserName</li>
+            <li class="list-group-item">Caches found: @Model.CachesFound</li>
+            <li class="list-group-item">Caches created: @Model.CachesCreated</li>
+            <li class="list-group-item">City: @Model.City</li>
+            <li id="userList" class="list-group-item">Country: @Model.Country</li>
+        </ul>
     </div>
+</div>
 
 

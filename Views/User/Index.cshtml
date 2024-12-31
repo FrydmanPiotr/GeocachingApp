@@ -1,5 +1,8 @@
 ﻿@using GeocachingApp.ViewModels
 @model List<UserViewModel>
+@{
+    ViewData["Title"] = "Users";
+}
 
 <div class="album py-5 bg-light">
     <div class="container">
@@ -9,24 +12,32 @@
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
                         <div class="card-body">
-                            <img class="card-img-top" src="@item.ProfileImageUrl" width="100%" height="225" alt="" />
-                            <p class="card-text">@item.UserName</p>
-                            <p class="card-text">Caches found: @item.CachesFound</p>
-                            <p class="card-text">Caches created: @item.CachesCreated</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a type="btn btn-success" asp-controller="User" asp-action="Detail" asp-route-id="@item.Id"
-                                       class="btn btn-sm btn-outline-secondary">View</a>
-                                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
-                                    {
-                                        <a asp-area="" asp-controller="User" asp-action="EditUser" asp-route-id="@item.Id"
-                                           class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    }
-                                    @if (User.Identity.IsAuthenticated && (User.IsInRole("admin") && User.Identity.Name != item.UserName))
-                                    {
-                                        <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id"
-                                           class="btn btn-sm btn-outline-secondary">Delete</a>
-                                    }
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <img class="rounded-circle" src="@item.ProfileImageUrl" width="150" height="150" alt="User Profile" />
+                                </div>
+                                <div>
+                                    <ul class="list-unstyled">
+                                        <li><strong>@item.UserName</strong></li>
+                                        <li>Caches found: @item.CachesFound</li>
+                                        <li>Caches created: @item.CachesCreated</li>
+                                    </ul>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a type="btn btn-success" asp-controller="User" asp-action="Detail" asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-outline-secondary">View</a>
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                            {
+                                                <a asp-area="" asp-controller="User" asp-action="EditUser" asp-route-id="@item.Id"
+                                                   class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && (User.IsInRole("admin") && User.Identity.Name != item.UserName))
+                                            {
+                                                <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id"
+                                                   class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

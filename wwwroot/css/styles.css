@@ -1,0 +1,57 @@
+﻿body {
+    font-family: Roboto, sans-serif;
+}
+
+input.form-control {
+    background-color: palegreen;
+    border-color: forestgreen;
+}
+
+.list-group-item {
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    font-size: 16px; 
+}
+
+.list-group-item.bg-success {
+  background-color: #28a745 !important; 
+  color: #fff !important; 
+  font-family: Roboto, sans-serif;
+  font-size:18px;
+}
+
+.list-group {
+    margin-top: 20px;
+    font-family: Georgia, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item:last-child {
+    border-bottom: 2px solid #28a745; 
+}
+
+strong {
+    color: #007bff; 
+}
+
+ul.list-unstyled li {
+    margin-bottom: 5px; 
+}
+
+#formButtons {
+    padding: 5px 0px;
+}
+
+#title {
+    font-size: 20px;
+}
+
+#description {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+}
+
+#userList {
+    border-bottom: 2px solid #0d6efd;
+}
+
