@@ -1,6 +1,10 @@
 ﻿@using GeocachingApp.ViewModels
 @model EditClubViewModel
 
+@{
+    ViewData["Title"] = "Editing club";
+}
+
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
     <input type="hidden" value="AddressId" id="AddressId"/>
     <div class="form-group">

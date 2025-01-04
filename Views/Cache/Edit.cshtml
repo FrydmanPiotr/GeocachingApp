@@ -2,6 +2,11 @@
 @using GeocachingApp.ViewModels
 @model EditCacheViewModel
 
+@{
+    ViewData["Title"] = "Editing cache";
+}
+
+
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
     <input type="hidden" value="AddressId" id="AddressId" />
     <div class="form-group">

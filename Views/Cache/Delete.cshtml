@@ -1,6 +1,10 @@
 ﻿@using GeocachingApp.Data.Enum
 @model Cache
 
+@{
+    ViewData["Title"] = "Deleting cache";
+}
+
 <h1>Do you want to delete this geocache ?</h1>
 
 <form method="post" asp-action="Delete" enctype="multipart/form-data">

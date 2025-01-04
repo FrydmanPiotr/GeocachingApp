@@ -1,6 +1,10 @@
 ﻿@using GeocachingApp.ViewModels
 @model EditUserProfileViewModel
 
+@{
+    ViewData["Title"] = "Editing user";
+}
+
 <form method="post" asp-action="EditUser" enctype="multipart/form-data">
     <input type="hidden" id="Id" name="Id" asp-for="Id" />
 
