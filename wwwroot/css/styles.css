@@ -1,5 +1,32 @@
 ﻿body {
     font-family: Roboto, sans-serif;
+    background-image: url('/images/forest.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+form label {
+    background-color: green;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 1px 2px;
+}
+
+.form-group {
+    padding: 5px 10px 5px 10px; /* Góra, prawa, dół, lewa */
+}
+
+h4 {
+    background-color: green;
+    color: white;
+    border: solid 1px white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px 10px;
+    display: inline-block;
 }
 
 strong {
@@ -8,10 +35,6 @@ strong {
 
 input.form-control {
     border-color: forestgreen;
-}
-
-.custom-navbar {
-    border-bottom: 2px solid green;
 }
 
 .list-group-item {
@@ -37,6 +60,19 @@ input.form-control {
     border-bottom: 2px solid #28a745; 
 }
 
+.navbar {
+    background-color: green;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #FFD700 !important;
+}
+
+
 ul.list-unstyled li {
     margin-bottom: 5px; 
 }
@@ -46,30 +82,13 @@ ul.list-unstyled li {
 }
 
 .hover-effect:hover {
-    border: 1px solid green;
+    border: 1px solid white;
     border-radius: 5px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.nav-link {
-    text-decoration: none;
-    color: black;
-    padding: 6px;
-    transition: border-bottom 0.3s ease;
-}
-
-.nav-link.active {
-    border: 1px solid green;
-    border-radius: 5px;
-    background-color: lightgreen;
-}
-
-#formButtons {
-    padding: 5px 0px;
-}
-
-#title {
-    font-size: 20px;
+#banner-home {
+    color:white;
 }
 
 #description {
@@ -77,7 +96,20 @@ ul.list-unstyled li {
     font-size: 16px;
 }
 
-#userList {
-    border-bottom: 2px solid #0d6efd;
+#formButtons {
+    padding: 5px 0px;
+}
+
+#logo-name{
+    color: white;
+}
+
+#title {
+    font-size: 20px;
+}
+
+#user-detail-header {
+    background-color: green;
+    color: white
 }
 
