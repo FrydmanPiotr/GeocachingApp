@@ -3,57 +3,21 @@
 }
 
 <section class="jumbotron text-center">
-    <div class="container">
-        <h1 id="banner-home" class="jumbotron-heading">Geocaching Application</h1>
-        <p style="color:white;" class="lead text-muted">
+    <div id="banner-home" class="container">
+        <h1 class="jumbotron-heading text-white">Geocaching Application</h1>
+        <p class="lead text-white">
             This is an application for geocaches seekers. Register and start searching today!
         </p>
     </div>
 </section>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Kontener przycisków -->
+<div class="button-container text-center">
+    <a class="btn btn-success btn-lg hover-effect"
+       asp-area="" asp-controller="Account" asp-action="Login"
+       aria-label="Login to your account">Login in your account &raquo;</a>
+
+    <a class="btn btn-success btn-lg hover-effect pd"
+       asp-area="" asp-controller="Account" asp-action="Register"
+       aria-label="Create a new account">Create a new account &raquo;</a>
+</div>
