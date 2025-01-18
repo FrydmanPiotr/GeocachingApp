@@ -16,8 +16,8 @@ For site administration purposes, the Django framework
 provides the administration panel.
 
 <p>
-  <img alt="Home" src="https://github.com/FrydmanPiotr/GeocachingApplication/blob/main/pictures/home.png">
-  <img alt="Blogs site" src="https://github.com/FrydmanPiotr/GeocachingApplication/blob/main/pictures/register.png">
+  <img alt="Home" src="https://github.com/FrydmanPiotr/GeocachingApp/blob/main/pictures/home.png">
+  <img alt="Register site" src="https://github.com/FrydmanPiotr/GeocachingApp/blob/main/pictures/register.png">
 </p>
 
 ## Technologies 
