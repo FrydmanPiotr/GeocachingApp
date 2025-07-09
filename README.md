@@ -3,7 +3,6 @@
 ## Table of contents
 * Description
 * Technologies
-* Setup
 
 ## Description
 
@@ -24,10 +23,4 @@ Project is created with:
 - HTML
 - CSS
 - MSSQL
-- Visual Studio
-
-## Setup
-To run this project, install locally following:
-- MSSQL
-- .NET 8.0
 - Visual Studio
